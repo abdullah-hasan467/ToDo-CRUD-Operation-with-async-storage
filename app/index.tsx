@@ -1,5 +1,13 @@
 import Task from "@/components/Task";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export default function Index() {
   return (
@@ -10,12 +18,26 @@ export default function Index() {
       </View>
 
       <View style={styles.items}>
-        <Task  text={"Task 1"}/>
-        <Task  text={"Task 2"}/>
-        <Task  text={"Task 3"}/>
-        <Task  text={"Task 4"}/>
-       
+        <Task text={"Task 1"} />
+        <Task text={"Task 2"} />
+        <Task text={"Task 3"} />
+        <Task text={"Task 4"} />
       </View>
+
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.writeTaskWrapper}
+      >
+        <TextInput
+          style={styles.input}
+          placeholder="Wrtite Your Today's Task"
+        />
+        <TouchableOpacity>
+          <View style={styles.addwrapper}>
+            <Text styles={styles.addText}> + </Text>
+          </View>
+        </TouchableOpacity>
+      </KeyboardAvoidingView>
     </View>
   );
 }
@@ -35,6 +57,33 @@ const styles = StyleSheet.create({
   },
   items: {
     paddingHorizontal: 20,
-    paddingTop:30
+    paddingTop: 30,
   },
+  writeTaskWrapper: {
+    position: "absolute",
+    bottom: 60,
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+  },
+  input: {
+    paddingVertical: 50,
+    paddingHorizontal: 20,
+    backgroundColor: "#FFF",
+    borderRadius: 60,
+    borderColor: "#C0C0C0",
+    width: 250,
+  },
+  addwrapper: {
+    width: 60,
+    height: 60,
+    backgroundColor: "#FFF",
+    borderRadius: 60,
+    justifyContent: "center",
+    alignItems: "center",
+    borderColor: "#C0C0C0",
+    borderWidth: 1,
+  },
+  addText: {},
 });
