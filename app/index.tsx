@@ -6,10 +6,17 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
+import { useState } from "react";
 
 export default function Index() {
+  const [task, setTask] = useState()
+const handleAaddtask = () =>{
+  console.log(task)
+
+}
+
   return (
     <View style={styles.container}>
       {/* Today's Tasks  */}
@@ -30,11 +37,13 @@ export default function Index() {
       >
         <TextInput
           style={styles.input}
-          placeholder="Wrtite Your Today's Task"
+          placeholder="Wrtite Your Today's Task" value={task}  onChangeText={(e)=>setTask(e)}
         />
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>{
+          handleAaddtask()
+        }}>
           <View style={styles.addwrapper}>
-            <Text styles={styles.addText}> + </Text>
+            <Text style={styles.addText}> + </Text>
           </View>
         </TouchableOpacity>
       </KeyboardAvoidingView>
@@ -68,10 +77,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   input: {
-    paddingVertical: 50,
+    paddingVertical: 25,
     paddingHorizontal: 20,
     backgroundColor: "#FFF",
-    borderRadius: 60,
+    borderRadius: 25,
     borderColor: "#C0C0C0",
     width: 250,
   },
