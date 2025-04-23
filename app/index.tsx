@@ -1,4 +1,5 @@
 import Task from "@/components/Task";
+import { useState } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
@@ -6,16 +7,17 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
-import { useState } from "react";
 
 export default function Index() {
-  const [task, setTask] = useState()
-const handleAaddtask = () =>{
-  console.log(task)
-
-}
+  const [task, setTask] = useState<string>(""); // specify task as a string
+  const [taskItems, setTaskItems] = useState<string[]>([]);
+  const handleAaddtask = () => {
+    setTaskItems([...taskItems, task]);
+    setTask(null);
+    console.log(taskItems)
+  };
 
   return (
     <View style={styles.container}>
@@ -37,11 +39,15 @@ const handleAaddtask = () =>{
       >
         <TextInput
           style={styles.input}
-          placeholder="Wrtite Your Today's Task" value={task}  onChangeText={(e)=>setTask(e)}
+          placeholder="Wrtite Your Today's Task"
+          value={task}
+          onChangeText={(e) => setTask(e)}
         />
-        <TouchableOpacity onPress={()=>{
-          handleAaddtask()
-        }}>
+        <TouchableOpacity
+          onPress={() => {
+            handleAaddtask();
+          }}
+        >
           <View style={styles.addwrapper}>
             <Text style={styles.addText}> + </Text>
           </View>
