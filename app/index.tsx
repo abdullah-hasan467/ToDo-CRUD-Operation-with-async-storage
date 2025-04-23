@@ -3,6 +3,7 @@ import { useState } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -16,7 +17,7 @@ export default function Index() {
   const handleAaddtask = () => {
     setTaskItems([...taskItems, task]);
     setTask(null);
-    console.log(taskItems)
+    
   };
 
   return (
@@ -26,12 +27,17 @@ export default function Index() {
         <Text style={styles.sectionTitle}>Today's Task </Text>
       </View>
 
-      <View style={styles.items}>
-        <Task text={"Task 1"} />
-        <Task text={"Task 2"} />
-        <Task text={"Task 3"} />
-        <Task text={"Task 4"} />
+    
+
+     <ScrollView>
+     <View style={styles.items}>
+      {
+        taskItems.map ((items) =>{
+          return <Task text={items} />
+        })
+      }
       </View>
+     </ScrollView>
 
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
