@@ -22,7 +22,8 @@ export default function Index() {
     setTask(null);
   };
 
-  const completeTask = (index) => {
+  const completeTask = (index,item) => {
+    alert (`Are you Sure to Delete Your task: ${item}`)
     let itemsCopy = [...taskItems];
     itemsCopy.splice(index, 1);
     setTaskItems(itemsCopy);
@@ -46,7 +47,7 @@ export default function Index() {
               return (
                 <TouchableOpacity
                   key={index}
-                  onPress={() => completeTask(index)}
+                  onPress={() => completeTask(index,item)}
                 >
                   <Task text={item} />
                 </TouchableOpacity>
